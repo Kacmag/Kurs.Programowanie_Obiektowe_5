@@ -691,8 +691,8 @@ class LaczeDoGNUPlota {
   /*!
    * \brief Udostępnia latest tryb rysowania
    *
-   * Udostępnia informację o aktualnym trybie rysowania.
-   * \return  Informacja o aktualnym trybie rysowania.
+   * Udostępnia informację o latestm trybie rysowania.
+   * \return  Informacja o latestm trybie rysowania.
    */
   TypTrybuRysowania WezTrybRys() const { return _TrybRys; }
 

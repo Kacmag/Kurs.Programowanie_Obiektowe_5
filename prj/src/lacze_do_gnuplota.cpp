@@ -948,15 +948,15 @@ namespace PzG {
      Wektor2f           _WspolrzEtykiety;
 
      /*!
-      * \brief Stałe przesunięcie etykiety wzgl. punktu
+      * \brief Stałe movementięcie etykiety wzgl. punktu
       *
-      * Stałe przesunięcie etykiety względem współrzędnych punktu
+      * Stałe movementięcie etykiety względem współrzędnych punktu
       */
     static  Wektor2f   _PrzesEtykiety_WzgWspoPunktu;
      /*!
-      * \brief Współczynnik przesunięcia etykiety
+      * \brief Współczynnik movementięcia etykiety
       *
-      * Współczynnik przesunięcia względem rozmiaru punktu.
+      * Współczynnik movementięcia względem rozmiaru punktu.
       */
     static  Wektor2f   _PrzesEtykiety_WzgRozmPunktu;
 
@@ -994,7 +994,7 @@ namespace PzG {
     /*!
      * \brief Wpisuje nowe współrzędne
      *
-     * Wpisuje nowe współrzędne jako przesunięcie względem położenie puntku.
+     * Wpisuje nowe współrzędne jako movementięcie względem położenie puntku.
      * \param[in] x - nowa względna współrzędna x-owa etykiety,
      * \param[in] y - nowa względna współrzędna y-owa etykiety.
      */

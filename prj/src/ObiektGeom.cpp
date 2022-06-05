@@ -4,10 +4,11 @@
 
 using namespace std;
 
-GeometricOBJ::GeometricOBJ(const char *sNazwaPliku_BrylaWzorcowa,
-                       const char *sNazwaObiektu,
-                       int KolorID) : _NazwaPliku_BrylaWzorcowa(sNazwaPliku_BrylaWzorcowa), _KolorID(KolorID)
+GeometricOBJ::GeometricOBJ(const char *sNazwaPliku_BrylaWzorcowa, const char *sNazwaObiektu,int KolorID) : _NazwaPliku_BrylaWzorcowa(sNazwaPliku_BrylaWzorcowa), _KolorID(KolorID)
 {
+  for (int i = 0; i < 3; i++)
+  matrix_obrot[i][i] = 1;
+  angle_zadany = 0;
   _NazwaObiektu = sNazwaObiektu;
   _NazwaPliku_BrylaRysowana = NAZWA_KARTOTEKI_PLIKOW_DO_RYSOWANIA;
   _NazwaPliku_BrylaRysowana += "/";
@@ -18,18 +19,17 @@ GeometricOBJ::GeometricOBJ(const char *sNazwaPliku_BrylaWzorcowa,
 bool GeometricOBJ::Przelicz_i_Zapisz_Wierzcholki(std::ostream &StrmWy, std::istream &StrmWe)
 {
 
-
   int Indeks_Wiersza = 0;
 
-  StrmWe >> ukl.set_wsp();
+  StrmWe >> set_wsp();
   if (StrmWe.fail())
     return false;
 
   do
   {
-    ukl.set_wsp() = ukl.get_wspolrzedne() & ukl.get_Scale() + ukl.get_movement();
+    set_wsp() = (get_wspolrzedne() & get_Scale()) + movement;
 
-    StrmWy << ukl.get_wspolrzedne() << endl;
+    StrmWy << get_wspolrzedne() << endl;
     ++Indeks_Wiersza;
 
     if (Indeks_Wiersza >= 4)
@@ -38,7 +38,7 @@ bool GeometricOBJ::Przelicz_i_Zapisz_Wierzcholki(std::ostream &StrmWy, std::istr
       Indeks_Wiersza = 0;
     }
 
-    StrmWe >> ukl.set_wsp();
+    StrmWe >> set_wsp();
 
   } while (!StrmWe.fail());
 
@@ -65,15 +65,19 @@ bool GeometricOBJ::Przelicz_i_Zapisz_Wierzcholki()
 
   int Indeks_Wiersza = 0;
 
-  StrmWe >> ukl.set_wsp();
+  StrmWe >> set_wsp();
+
   if (StrmWe.fail())
     return false;
 
   do
   {
-    ukl.set_wsp() = (ukl.get_wspolrzedne() & ukl.get_Scale()) + ukl.get_movement();
 
-    StrmWy << ukl.get_wspolrzedne() << endl;
+    set_wsp() = matrix_obrot * get_wspolrzedne();
+   
+    set_wsp() = (get_wspolrzedne() & get_Scale()) + movement;
+
+    StrmWy << get_wspolrzedne() << endl;
     ++Indeks_Wiersza;
 
     if (Indeks_Wiersza >= 4)
@@ -82,12 +86,13 @@ bool GeometricOBJ::Przelicz_i_Zapisz_Wierzcholki()
       Indeks_Wiersza = 0;
     }
 
-    StrmWe >> ukl.set_wsp();
-
+    StrmWe >> set_wsp();
+    ;
   } while (!StrmWe.fail());
 
   if (!StrmWe.eof())
     return false;
 
+  angle_zadany = 0;
   return Indeks_Wiersza == 0 && !StrmWy.fail();
 }

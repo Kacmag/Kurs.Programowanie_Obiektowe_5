@@ -16,8 +16,8 @@ pliki_do_rysowania:
 	mkdir pliki_do_rysowania
 
 
-./${APP}: obj/main.o obj/lacze_do_gnuplota.o obj/PowierzchniaMarsa.o obj/ObiektGeom.o
-	g++ -o ./${APP} obj/main.o obj/lacze_do_gnuplota.o obj/PowierzchniaMarsa.o\
+./${APP}: obj/main.o obj/lacze_do_gnuplota.o obj/PowierzchniaMarsa.o obj/ObiektGeom.o obj/matrix3D.o obj/Scena.o
+	g++ -o ./${APP} obj/main.o obj/lacze_do_gnuplota.o obj/PowierzchniaMarsa.o obj/matrix3D.o obj/Scena.o\
                         obj/ObiektGeom.o
 
 
@@ -34,6 +34,11 @@ obj/PowierzchniaMarsa.o: src/PowierzchniaMarsa.cpp inc/PowierzchniaMarsa.hh inc/
 obj/ObiektGeom.o: src/ObiektGeom.cpp inc/ObiektGeom.hh inc/lacze_do_gnuplota.hh
 	g++  -Iinc -W -Wall -pedantic -c -o obj/ObiektGeom.o src/ObiektGeom.cpp
 
+obj/matrix3D.o: src/matrix3D.cpp inc/matrix3D.hh
+	g++  -Iinc -W -Wall -pedantic -c -o obj/matrix3D.o src/matrix3D.cpp
+
+obj/Scena.o: src/Scena.cpp inc/Scena.hh inc/lacze_do_gnuplota.hh
+	g++  -Iinc -W -Wall -pedantic -c -o obj/Scena.o src/Scena.cpp
 
 clean:
 	rm -f obj/* ./${APP} core.* core liki_do_rysowania/*

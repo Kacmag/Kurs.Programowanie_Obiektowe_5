@@ -2,8 +2,8 @@
 #define KOLORY_HH
 
 enum Kolory {
-	     Kolor_JasnoNiebieski = 4,
-	     Kolor_Czerwony = 16
+	     Kolor_JasnoNiebieski = 3,
+	     Kolor_Czerwony = 15
 };
 
 #endif

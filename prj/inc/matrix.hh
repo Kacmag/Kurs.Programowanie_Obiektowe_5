@@ -2,7 +2,7 @@
 #define MACIERZ_HH
 
 
-#include "vector.hh"
+#include "Vector.hh"
 #include <algorithm>
 #include <iostream>
 
@@ -18,11 +18,13 @@ class Matrix {
 
         Vector<S_Type,S_Size> operator[](int i) const;
         Vector<S_Type,S_Size> &operator[](int i);
-        Vector<S_Type,S_Size> operator*(Vector<S_Type,S_Size> Skl);
+        
 
         S_Type get_Wyznacznik()const{return Wyznacznik;};
         void gausMethod();
         void podmianaWiersza(Vector<S_Type,S_Size> wek, int i);
+        Vector<S_Type,S_Size> operator*(Vector<S_Type,S_Size> Skl);
+    
         
 };
 
