@@ -1,0 +1,5 @@
+*.py linguist-language=C++
+Makefile linguist-vendored
+CMakeLists.txt linguist-vendored
+*.cmake linguist-vendored
+
